@@ -1,4 +1,6 @@
+import React from 'react';
 import './App.css';
+import defaultDataset from "./dataset"; //datasetが使えるようにインポート
 
 export default class App extends React.Component { //クラスコンポーネントで書く場合は最初にexport defaultを記述する
   constructor(props) {
@@ -7,7 +9,7 @@ export default class App extends React.Component { //クラスコンポーネン
       amswers: [],
       chats: [],
       currentId: 'init',
-      dataset: {},
+      dataset: dataset, //ローカルにあるdatasetを使っていく
       open: false
     }
   }
