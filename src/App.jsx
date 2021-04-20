@@ -1,23 +1,25 @@
 import React from 'react';
-import './App.css';
-import defaultDataset from "./dataset"; //datasetが使えるようにインポート
+import defaultDataset from "./dataset"; 
+import './aseets/styles/style.css';
 
 export default class App extends React.Component { //クラスコンポーネントで書く場合は最初にexport defaultを記述する
   constructor(props) {
     super(props);
     this.state = {
-      amswers: [],
+      answers: [],
       chats: [],
       currentId: 'init',
-      dataset: dataset, //ローカルにあるdatasetを使っていく
+      dataset: defaultDataset, //ローカルにあるdatasetを使っていく
       open: false
     }
   }
     render() {
       return (
-        <div>
-
-        </div>
+        <section className="c-section">
+          <div className="c-box">
+            {this.state.currentId}
+          </div>
+        </section>
       );
     }
 }

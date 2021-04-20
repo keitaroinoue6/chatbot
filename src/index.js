@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './aseets/styles/index.css'; //ディレクトリの変更に伴い変更
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
