@@ -1,6 +1,7 @@
 import React from 'react';
 import defaultDataset from "./dataset"; 
 import './aseets/styles/style.css';
+import {AnswersList} from "./components/index";
 
 export default class App extends React.Component { //クラスコンポーネントで書く場合は最初にexport defaultを記述する
   constructor(props) {
@@ -17,7 +18,7 @@ export default class App extends React.Component { //クラスコンポーネン
       return (
         <section className="c-section">
           <div className="c-box">
-            {this.state.currentId}
+            <AnswersList/>
           </div>
         </section>
       );
