@@ -14,15 +14,28 @@ export default class App extends React.Component { //クラスコンポーネン
       open: false
     }
   }
-    render() {
-      return (
-        <section className="c-section">
-          <div className="c-box">
-            <AnswersList/>
-          </div>
-        </section>
-      );
-    }
+
+  initAnswer = () => {
+    const initDataset = this.state.dataset[this.state.currentId];
+    const initAnswers = initDataset.answers;
+    this.setState({
+      answers: initAnswers
+    })
+  }
+
+  componentDidMount() { //コンポーネントが初期化して最初のレンダーが終わった時に何かしら副作用がある処理をしたい時にcomponentDidMountを使う
+    this.initAnswer()
+  }
+
+  render() {
+    return (
+      <section className="c-section">
+        <div className="c-box">
+          <AnswersList answers={this.state.answers}/>
+        </div>
+      </section>
+    );
+  }
 }
 
 

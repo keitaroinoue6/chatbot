@@ -1,11 +1,15 @@
 import React from 'react';
-import defaultDataset from '../dataset';
+import {Answer} from  './index'
 
-const AnswersList = () => { //ダミーデータを入れた方が開発効率が上がる
-return(
-  <div className= "c-grid__answer">
-  </div>
-)
+const AnswersList = (props) => { //ダミーデータを入れた方が開発効率が上がる
+  return(
+    <div className= "c-grid__answer">
+      {props.answers.map((value, index) => {
+        return <Answer content={value.content} />
+      })}
+
+    </div>
+  )
 }
 
 export default AnswersList
