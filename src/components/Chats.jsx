@@ -15,10 +15,9 @@ const Chats = (props) => { //初期のチャットの状態を渡すためにpor
   const classes = useStyles(); //上で指定しているmaterial UIのstyleを使うメソッドを定数にしている
   return(
     <List className={classes.root}>
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
+      {props.chats.map((chat, index) => { //props.chatsは配列なので配列に対してはmapメソッド使う
+        return <Chat text={chat.text} type={chat.type} key={index.toString()}/> //Chatに対してtextのchatを 配列に対してはkeyを持たせないといけない
+      })}
     </List>
   )
 

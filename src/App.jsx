@@ -18,11 +18,7 @@ export default class App extends React.Component { //クラスコンポーネン
 
   initAnswer = () => {
     const initDataset = this.state.dataset[this.state.currentId];
-    const chat = {
-      text: initDataset.question, //question: "こんにちは！🐯トラハックへのご用件はなんでしょうか？",が取れる
-      type: 'question' // questionの文字列を表示
-    }
-
+    const initAnswers = initDataset.answers;
     this.setState({
       answers: initAnswers
     })
@@ -30,14 +26,22 @@ export default class App extends React.Component { //クラスコンポーネン
 
   initChats = () => {
     const initDataset = this.state.dataset[this.state.currentId];
-    const initAnswers = initDataset.answers;
+    const chat = {
+      text: initDataset.question, //question: "こんにちは！🐯トラハックへのご用件はなんでしょうか？",  この値のキーが取ることができる
+      type: 'question' // questionの文字列を表示
+    }
+    
+    const chats = this.state.chats; //現在のchatsの状態の取得
+    chats.push(chat) //空っぽの配列に対してpush(追加)している
+
     this.setState({
-      chats: initAnswers
+      chats: chats
     })
   }
 
   componentDidMount() { //コンポーネントが初期化して最初のレンダーが終わった時に何かしら副作用がある処理をしたい時にcomponentDidMountを使う
-    this.initAnswer()
+    this.initChats();
+    this.initAnswer();
   }
 
   render() {
