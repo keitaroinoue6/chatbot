@@ -2,7 +2,7 @@ import React from 'react';
 import defaultDataset from "./dataset"; 
 import './aseets/styles/style.css';
 import {AnswersList, Chats} from "./components/index"; // エントリポイントを作っているのでimportするときに毎回追加する
-import {Char} from "./components/Chat"
+import {Chat} from "./components/Chat"
 
 export default class App extends React.Component { //クラスコンポーネントで書く場合は最初にexport defaultを記述する
   constructor(props) {
