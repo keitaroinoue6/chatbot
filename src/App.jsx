@@ -51,32 +51,22 @@ export default class App extends React.Component { //クラスコンポーネン
     }
   }
 
-  initAnswer = () => {
-    const initDataset = this.state.dataset[this.state.currentId];
-    const initAnswers = initDataset.answers;
+  // initAnswer = () => {
+  //   const initDataset = this.state.dataset[this.state.currentId];
+  //   const initAnswers = initDataset.answers;
 
-    this.setState({
-      answers: initAnswers
-    })
-  }
-    // const chat = {
-    //   text: initDataset.question, //question: "こんにちは！🐯トラハックへのご用件はなんでしょうか？",  この値のキーが取ることができる
-    //   type: 'question' // questionの文字列を表示
-    // }
-    
-    // const chats = this.state.chats; //現在のchatsの状態の取得
-    // chats.push(chat) //空っぽの配列に対してpush(追加)している
-  
-    // this.setState({
-    //   chats: chats
-    // })
-    // this.setState({
-    //   answers: initAnswers
-    // })
+  //   this.setState({
+  //     answers: initAnswers
+  //   })
+  // }
+
+
 
   componentDidMount() { //コンポーネントが初期化して最初のレンダーが終わった時に何かしら副作用がある処理をしたい時にcomponentDidMountを使う
-    this.initChats();
-    this.initAnswer();
+    const initAnswer = "";
+    this.selectAnswer(initAnswer, this.state.currentId)
+    // this.initChats();
+    // this.initAnswer();
   }
 
   render() {
