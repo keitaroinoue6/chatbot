@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultDataset from "./dataset"; 
 import './aseets/styles/style.css';
-import {AnswersList, Chats} from "./components/index"; // エントリポイントを作っているのでimportするときに毎回追加する
+import {Answer, AnswersList, Chats} from "./components/index"; // エントリポイントを作っているのでimportするときに毎回追加する
 import {Chat} from "./components/Chat"
 
 export default class App extends React.Component { //クラスコンポーネントで書く場合は最初にexport defaultを記述する
@@ -14,6 +14,8 @@ export default class App extends React.Component { //クラスコンポーネン
       dataset: defaultDataset, //ローカルにあるdatasetを使っていく
       open: false
     }
+    this.selectAnswer = this.selectAnswer.bind(this)
+    
   }
 
   displayNextQuestion = (nextQuestionId) => {
@@ -74,11 +76,34 @@ export default class App extends React.Component { //クラスコンポーネン
       <section className="c-section">
         <div className="c-box">
           <Chats chats={this.state.chats}/>
-          <AnswersList answers={this.state.answers}/>
+          <AnswersList answers={this.state.answers} select={this.selectAnswer}/>
         </div>
       </section>
     );
   }
 }
 
+//コールバック関数bind()
+
+// constructor(porps) {
+//   super(porps);
+//   this.selectAnswer = this.selectAnswer.bind(this)
+// }
+
+// selectAnswer = (selectAnswer, nextQuestionId) => {
+//   //処理の記述
+// };
+
+// render() {
+//   return (
+//     <AnswerList 
+//       answers={this.state.answers} 
+//       select={this.selectAnswer}
+//     />
+//   )
+// }
+
+// 上記のselectAnswerを<AnswersList/>にpropsとして渡したいときにconstructorのなかでbind()という
+// メソッドを使う。
+// なぜ使うのか、bindをしないと毎回renderされるたびにthis.selectAnswerが生成されてしまう。bindしてあげると一回生成されたコールバック関数はrenderしたとしても新しく生成されない
 
