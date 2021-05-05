@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
 const Answer = (props) => {
   // const classes = useStyles();
 
-  return (
-    <Button variant="contained" color="primary" onClick={() => props.select(props.content,props.nextId)}>
+  return ( //選択された時に次どの質問に行くのかというnextIdというキーがある
+    <Button variant="contained" color="primary" onClick={() => props.select(props.content,props.nextId)}> 
       {props.content}
     </Button>
   )

@@ -14,7 +14,7 @@ export default class App extends React.Component { //クラスコンポーネン
       dataset: defaultDataset, //ローカルにあるdatasetを使っていく
       open: false
     }
-    this.selectAnswer = this.selectAnswer.bind(this)
+    this.selectAnswer = this.selectAnswer.bind(this) //bindメソッド this.selectAnswerがAnswersListコンポーネントで使えるようになる
     
   }
 
@@ -76,7 +76,7 @@ export default class App extends React.Component { //クラスコンポーネン
       <section className="c-section">
         <div className="c-box">
           <Chats chats={this.state.chats}/>
-          <AnswersList answers={this.state.answers} select={this.selectAnswer}/>
+          <AnswersList answers={this.state.answers} select={this.selectAnswer}/> 
         </div>
       </section>
     );
