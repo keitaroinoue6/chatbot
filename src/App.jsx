@@ -2,7 +2,6 @@ import React from 'react';
 import defaultDataset from "./dataset"; 
 import './aseets/styles/style.css';
 import {Answer, AnswersList, Chats} from "./components/index"; // エントリポイントを作っているのでimportするときに毎回追加する
-import {Chat} from "./components/Chat"
 
 export default class App extends React.Component { //クラスコンポーネントで書く場合は最初にexport defaultを記述する
   constructor(props) {
@@ -35,7 +34,15 @@ export default class App extends React.Component { //クラスコンポーネン
   selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch(true) { // 条件分岐のパターンが４ぐらいできるのでswitch文にする
       case (nextQuestionId === 'init'):
-        this.displayNextQuestion(nextQuestionId)
+        setTimeout(() => 
+        this.displayNextQuestion(nextQuestionId), 500 //これがあることでユーザーから選択されたらまた上にあるdisplayNextQuestion関数が実行される
+        )
+        break;
+      case(/^https:*/.test(nextQuestionId)): //datasetの中身がhttps:から始まる質問かtest()メソッドを用いて確認している
+        const a = document.createElement('a');
+        a.href = nextQuestionId;
+        a.target = '__blank'; //新しいタブを作って外部ページを表示させるプロパティ
+        a.click();
         break;
       default: 
         const chats = this.state.chats;
@@ -48,10 +55,20 @@ export default class App extends React.Component { //クラスコンポーネン
           chats: chats
         })
 
-        this.displayNextQuestion(nextQuestionId) //これがあることでユーザーから選択されたらまた上にあるdisplayNextQuestion関数が実行される
+        setTimeout(() => //次の質問の回答時間の調整するメソッド 時間はm秒
+          this.displayNextQuestion(nextQuestionId), 1000
+        )
         break;
     }
   }
+
+  handleClickOpen = () => { //formダイアログの表示
+    this.state({ open: true });
+  };
+
+  handleClose = () => {
+    this.state({ open: false });
+  };
 
   // initAnswer = () => {
   //   const initDataset = this.state.dataset[this.state.currentId];
@@ -69,6 +86,15 @@ export default class App extends React.Component { //クラスコンポーネン
     this.selectAnswer(initAnswer, this.state.currentId)
     // this.initChats();
     // this.initAnswer();
+  }
+
+
+  componentDidUpdate(){
+    //最新のチャットが見えるように、スクロール位置の頂点をスクロール領域の最下部に設定する
+    const scrollArea = document.getElementById('scroll-area')
+    if(scrollArea) { //scrollHeightは見えている部分以外の高さの表示
+      scrollArea.scrollTop = scrollArea.scrollHeight
+    }
   }
 
   render() {
