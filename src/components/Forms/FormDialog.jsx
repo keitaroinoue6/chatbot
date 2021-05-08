@@ -20,7 +20,7 @@ export default class FormDialog extends React.Component{
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-      <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">お問い合わせフォーム</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           Let Google help apps determine location. This means sending anonymous location data to

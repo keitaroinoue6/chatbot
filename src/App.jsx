@@ -12,7 +12,7 @@ export default class App extends React.Component { //クラスコンポーネン
       chats: [],
       currentId: 'init',
       dataset: defaultDataset, //ローカルにあるdatasetを使っていく
-      open: true
+      open: false
     }
 
     this.selectAnswer = this.selectAnswer.bind(this) //bindメソッド this.selectAnswerがAnswersListコンポーネントで使えるようになる
@@ -43,6 +43,13 @@ export default class App extends React.Component { //クラスコンポーネン
         this.displayNextQuestion(nextQuestionId), 500 //これがあることでユーザーから選択されたらまた上にあるdisplayNextQuestion関数が実行される
         )
         break;
+
+      case (nextQuestionId === 'contact'): //nextQuestionIdがdataset.jsの'contact'場合にフォームを表示させるようにしている。
+        this.handleClickOpen()
+        break;
+
+
+
       case(/^https:*/.test(nextQuestionId)): //datasetの中身がhttps:から始まる質問かtest()メソッドを用いて確認している
         const a = document.createElement('a');
         a.href = nextQuestionId;
