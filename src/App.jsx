@@ -2,6 +2,7 @@ import React from 'react';
 import defaultDataset from "./dataset"; 
 import './aseets/styles/style.css';
 import {Answer, AnswersList, Chats} from "./components/index"; // エントリポイントを作っているのでimportするときに毎回追加する
+import FormDialog from "./components/Forms/FormDialog"
 
 export default class App extends React.Component { //クラスコンポーネントで書く場合は最初にexport defaultを記述する
   constructor(props) {
@@ -11,9 +12,13 @@ export default class App extends React.Component { //クラスコンポーネン
       chats: [],
       currentId: 'init',
       dataset: defaultDataset, //ローカルにあるdatasetを使っていく
-      open: false
+      open: true
     }
+
     this.selectAnswer = this.selectAnswer.bind(this) //bindメソッド this.selectAnswerがAnswersListコンポーネントで使えるようになる
+    this.handleClickOpen = this.handleClickOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+
     
   }
 
@@ -63,11 +68,11 @@ export default class App extends React.Component { //クラスコンポーネン
   }
 
   handleClickOpen = () => { //formダイアログの表示
-    this.state({ open: true });
+    this.setState({ open: true });
   };
 
   handleClose = () => {
-    this.state({ open: false });
+    this.setState({ open: false });
   };
 
   // initAnswer = () => {
@@ -102,9 +107,12 @@ export default class App extends React.Component { //クラスコンポーネン
       <section className="c-section">
         <div className="c-box">
           <Chats chats={this.state.chats}/>
-          <AnswersList answers={this.state.answers} select={this.selectAnswer}/> 
+          <AnswersList answers={this.state.answers} select={this.selectAnswer}/>
+          <FormDialog open={this.state.open} handleClose={this.handleClose}/> 
+          
         </div>
       </section>
+      //FormDialogの中ではhandleCloseの関数を使いたいのでhandleClose={this.handleClose}  handleCloseというporpsにbindしたthis.handleClose関数を渡してあげる
     );
   }
 }

@@ -7,32 +7,19 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 
-export default class FromDialog extends React.Component{
+export default class FormDialog extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      open: false
-    }
-
-    this.handleClose = this.handleClose.bind(this)
   }
-
-  handleClickOpen = () => {
-    this.state({ open: true });
-  };
-
-  handleClose = () => {
-    this.state({ open: false });
-  };
 
   render() {
     return(
       <Dialog
-      open={this.state.open}
-      onClose={this.handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
+        open={this.props.open}
+        onClose={this.props.handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
       <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
@@ -41,10 +28,10 @@ export default class FromDialog extends React.Component{
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={this.handleClose} color="primary">
+        <Button onClick={this.props.handleClose} color="primary">
           Disagree
         </Button>
-        <Button onClick={this.handleClose} color="primary" autoFocus>
+        <Button onClick={this.props.handleClose} color="primary" autoFocus>
           Agree
         </Button>
       </DialogActions>
