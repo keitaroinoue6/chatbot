@@ -31,6 +31,16 @@ export default class FormDialog extends React.Component{
     this.setState({discription: event.target.value})
   }
 
+  submitForm = () => {
+    const name = this.state.name //それぞれを定数化
+    const email = this.state.email
+    const discription = this.state.discription
+
+    
+
+
+  }
+
   render() {
     return(
       <Dialog
@@ -56,10 +66,10 @@ export default class FormDialog extends React.Component{
       </DialogContent>
       <DialogActions>
         <Button onClick={this.props.handleClose} color="primary">
-          Disagree
+          キャンセル
         </Button>
-        <Button onClick={this.props.handleClose} color="primary" autoFocus>
-          Agree
+        <Button onClick={this.props.submitForm} color="primary" autoFocus>
+          送信する
         </Button>
       </DialogActions>
     </Dialog>
