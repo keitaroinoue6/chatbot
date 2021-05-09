@@ -14,11 +14,21 @@ export default class FormDialog extends React.Component{
       email:"",
       discription:""
     }
+
+    this.inputName = this.inputName.bind(this)
+    this.inputEmail = this.inputEmail.bind(this)
+    this.inputDiscription = this.inputDiscription.bind(this)
   }
 
   // 上記のstateを管理するfunciton
   inputName = (event) => { //textinputのonChangeイベントに作用して動いていくので引数にeventをつける
-
+    this.setState({name: event.target.value}) //onchangeイベントでnameを管理しているtextfieldに入力された値が随時stateを更新する
+  }
+  inputEmail = (event) => { 
+    this.setState({email: event.target.value})
+  }
+  inputDiscription = (event) => {
+    this.setState({discription: event.target.value})
   }
 
   render() {
@@ -32,8 +42,16 @@ export default class FormDialog extends React.Component{
       <DialogTitle id="alert-dialog-title">お問い合わせフォーム</DialogTitle>
       <DialogContent>
         <TextInput //TextInputコンポーネントを追加
-          label={} multiline={} rows={}
-          value={} type={} onChange={}
+          label={"お名前(必須)"} multiline={false} rows={1}
+          value={this.state.name} type={"text"} onChange={this.inputName}
+        />
+        <TextInput //TextInputコンポーネントを追加
+          label={"メールアドレス(必須)"} multiline={false} rows={1}
+          value={this.state.email} type={"email"} onChange={this.inputEmail}
+        />
+        <TextInput //TextInputコンポーネントを追加
+          label={"お問い合わせ内容"} multiline={true} rows={5}
+          value={this.state.discription} type={"text"} onChange={this.inputDiscription}
         />
       </DialogContent>
       <DialogActions>

@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const TextInput = (porps) => {
+const TextInput = (props) => {
   return(
     <TextField
       fullWidth={true} // trueだと幅いっぱいのtextfiledにする
@@ -11,7 +11,9 @@ const TextInput = (porps) => {
       row={props.rows} // 複数行の場合は数値を設定するとその数字分のテキストフィールドになる
       value={props.value}
       type={props.type} //テキストなのかe-mailなのかなどここで選択できる
-      onChange={porps.onChange}
+      onChange={props.onChange}
     />
   )
 }
+
+export default TextInput
